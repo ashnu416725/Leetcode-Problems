@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int foobar(TreeNode *node, int &ans){
+        if(node==NULL)
+            return 0;
+        int left=max(0,foobar(node->left,ans));
+        int right=max(0,foobar(node->right,ans));
+        ans=max(ans,left+right+node->val);
+        return max(left,right)+node->val;
+    }
+    int maxPathSum(TreeNode *root) {
+         int ans=INT_MIN;
+         foobar(root,ans);
+         return ans; 
+    }
+};
